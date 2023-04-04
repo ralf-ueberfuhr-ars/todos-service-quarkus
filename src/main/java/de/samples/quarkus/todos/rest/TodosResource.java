@@ -2,6 +2,7 @@ package de.samples.quarkus.todos.rest;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import javax.ws.rs.Consumes;
@@ -29,7 +30,15 @@ public class TodosResource {
 	@GET
 	@Path("/{id}")
 	public Todo findById(@PathParam("id") Long id) {
-		return todos.get(id); // TODO 404?
+		var result = todos.get(id);
+		if(null == result) {
+			throw new NotFoundException();
+		} else {
+			return result;
+		}
+		// alternativ:
+		// return Optional.ofNullable(todos.get(id))
+		//		.orElseThrow(NotFoundException::new);
 	}
 
 	@POST
