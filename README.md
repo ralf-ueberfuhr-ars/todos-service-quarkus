@@ -1,8 +1,7 @@
-# todos-service-quarkus
+# Todos Service with Quarkus
+[![CI build](https://github.com/ralf-ueberfuhr-ars/todos-service-quarkus/actions/workflows/ci.yml/badge.svg)](https://github.com/ralf-ueberfuhr-ars/todos-service-quarkus/actions/workflows/ci.yml)
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
-
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+This project provides a REST API to manage todos.
 
 ## Running the application in dev mode
 
@@ -46,14 +45,3 @@ mvn package -Pnative -Dquarkus.native.container-build=true
 You can then execute your native executable with: `./target/todos-service-quarkus-1.0.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Related Guides
-
-
-## Provided Code
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
