@@ -1,4 +1,4 @@
-package de.samples.quarkus.todos.rest;
+package de.samples.quarkus.todos.boundary;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

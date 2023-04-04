@@ -1,10 +1,10 @@
-package de.samples.quarkus.todos.rest;
+package de.samples.quarkus.todos.boundary;
 
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Todo {
+public class TodoDto {
 
 	private Long id;
 	private String title;
