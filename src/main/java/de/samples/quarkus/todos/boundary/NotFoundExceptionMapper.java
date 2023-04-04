@@ -1,4 +1,4 @@
-package de.samples.quarkus.todos.rest;
+package de.samples.quarkus.todos.boundary;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;

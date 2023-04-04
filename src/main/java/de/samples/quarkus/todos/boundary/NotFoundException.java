@@ -1,4 +1,4 @@
-package de.samples.quarkus.todos.rest;
+package de.samples.quarkus.todos.boundary;
 
 public class NotFoundException extends RuntimeException {
 
