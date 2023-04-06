@@ -17,7 +17,7 @@ import javax.ws.rs.core.UriInfo;
 
 import de.samples.quarkus.todos.domain.TodosService;
 
-@Path("/todos")
+@Path("/api/v1/todos") // we need "api/v1" here for Quarkus tests to run correctly
 public class TodosResource {
 
 	private final TodosService service;
