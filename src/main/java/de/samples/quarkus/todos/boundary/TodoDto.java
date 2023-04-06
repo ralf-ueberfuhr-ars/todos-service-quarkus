@@ -4,8 +4,13 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 public class TodoDto {
 
+	// do not allow to read id from request body, only write in into a response
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Long id;
 	@Size(min = 3)
 	private String title;
