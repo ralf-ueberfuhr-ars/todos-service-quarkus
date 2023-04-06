@@ -6,8 +6,10 @@ import java.util.Optional;
 import java.util.TreeMap;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.validation.Valid;
 
 @ApplicationScoped
+//@MethodValidated
 public class TodosService {
 
 	// manage todos by their id (sorted)
@@ -22,7 +24,7 @@ public class TodosService {
 		return Optional.ofNullable(todos.get(id));
 	}
 
-	public void add(Todo todo) {
+	public void add(@Valid Todo todo) {
 		// find new id
 		var id = idCounter++;
 		todo.setId(id);
