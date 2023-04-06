@@ -8,6 +8,8 @@ import java.util.TreeMap;
 import javax.enterprise.context.ApplicationScoped;
 import javax.validation.Valid;
 
+import de.samples.quarkus.interceptor.LogMethodCall;
+
 @ApplicationScoped
 //@MethodValidated
 public class TodosService {
@@ -24,6 +26,7 @@ public class TodosService {
 		return Optional.ofNullable(todos.get(id));
 	}
 
+	@LogMethodCall
 	public void add(@Valid Todo todo) {
 		// find new id
 		var id = idCounter++;
