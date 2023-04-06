@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import javax.interceptor.InterceptorBinding;
 
 /**
- * Annotates a method to get a logging for each invoncation.
+ * Annotate a method to get a logging for each invocation.
  */
 @Inherited
 @InterceptorBinding
