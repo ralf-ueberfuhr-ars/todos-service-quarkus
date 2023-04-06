@@ -1,38 +1,47 @@
 package de.samples.quarkus.todos.domain;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.Optional;
-import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.validation.Valid;
 
 import de.samples.quarkus.interceptor.LogMethodCall;
+import de.samples.quarkus.todos.persistence.TodoEntityMapper;
+import de.samples.quarkus.todos.persistence.TodosRepository;
 
 @ApplicationScoped
 //@MethodValidated
 public class TodosService {
 
-	// manage todos by their id (sorted)
-	private final Map<Long, Todo> todos = new TreeMap<>();
-	private long idCounter; // simple ID generation mechanism ;-)
+	private final TodosRepository repo;
+	private final TodoEntityMapper mapper;
+	
+	public TodosService(TodosRepository repo, TodoEntityMapper mapper) {
+		super();
+		this.repo = repo;
+		this.mapper = mapper;
+	}
 
 	public Collection<Todo> findAll() {
-		return todos.values();
+		return repo.listAll()
+				.stream()
+				.map(mapper::map)
+				.collect(Collectors.toList());
+
 	}
 
 	public Optional<Todo> findById(Long id) {
-		return Optional.ofNullable(todos.get(id));
+		return repo.findByIdOptional(id)
+				.map(mapper::map);
 	}
 
 	@LogMethodCall
 	public void add(@Valid Todo todo) {
-		// find new id
-		var id = idCounter++;
-		todo.setId(id);
-		// save
-		this.todos.put(id, todo);
+		var entity = mapper.map(todo);
+		repo.persist(entity);
+		todo.setId(entity.getId());
 	}
 
 }

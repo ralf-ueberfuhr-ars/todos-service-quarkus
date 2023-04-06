@@ -1,46 +1,52 @@
-package de.samples.quarkus.todos.boundary;
+package de.samples.quarkus.todos.persistence;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.Size;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+@Entity
+public class TodoEntity {
 
-public class TodoDto {
-
-	// do not allow to read id from request body, only write in into a response
-	@JsonProperty(access = Access.READ_ONLY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Size(min = 3)
 	private String title;
 	private boolean completed;
-	// @JsonProperty("due_date") -> see application.properties (quarkus.jackson.property-naming-strategy)
 	private LocalDate dueDate;
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public boolean isCompleted() {
 		return completed;
 	}
+
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
 	}
+
 	public LocalDate getDueDate() {
 		return dueDate;
 	}
+
 	public void setDueDate(LocalDate dueDate) {
 		this.dueDate = dueDate;
 	}
-	
+
 }
