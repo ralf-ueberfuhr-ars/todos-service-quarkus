@@ -3,6 +3,8 @@ package de.samples.quarkus.todos.boundary;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -37,7 +39,7 @@ public class TodosResource {
 
 	@GET
 	@Path("/{id}")
-	public TodoDto findById(@PathParam("id") Long id) {
+	public TodoDto findById(@PathParam("id") @Min(0) Long id) {
 		return service.findById(id)
 				.map(mapper::map)
 				.orElseThrow(NotFoundException::new);
@@ -45,7 +47,7 @@ public class TodosResource {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response create(TodoDto todoDto, @Context UriInfo info) {
+	public Response create(@Valid TodoDto todoDto, @Context UriInfo info) {
 		var todo = mapper.map(todoDto);
 		service.add(todo);
 		// create response

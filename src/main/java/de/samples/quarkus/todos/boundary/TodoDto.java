@@ -2,9 +2,12 @@ package de.samples.quarkus.todos.boundary;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Size;
+
 public class TodoDto {
 
 	private Long id;
+	@Size(min = 3)
 	private String title;
 	private boolean completed;
 	// @JsonProperty("due_date") -> see application.properties (quarkus.jackson.property-naming-strategy)
